@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/motionVariants';
 
@@ -11,14 +10,15 @@ const GithubDashboard = () => {
       viewport={{ once: true, margin: "-50px" }}
       className="flex flex-col items-center p-6 bg-background text-fg min-h-screen">
       {/* Header Section */}
-      <h1 className="text-5xl font-bold mb-2 text-fg">Hi 👋, I am Gaurav Ashok Ghuge</h1>
-      <h3 className="text-2xl text-muted mb-6">A passionate software engineer from India</h3>
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-fg text-center">Hi 👋, I am Gaurav Ashok Ghuge</h1>
+      <h3 className="text-lg sm:text-xl lg:text-2xl text-muted mb-6 text-center">A passionate software engineer from India</h3>
 
       {/* Profile Views */}
       <p className="mb-6">
         <img
           src="https://komarev.com/ghpvc/?username=gauravghuge7&label=Profile%20views&color=ff69b4&style=flat"
           alt="Profile Views"
+          className="max-w-full h-auto"
         />
       </p>
 
@@ -28,7 +28,7 @@ const GithubDashboard = () => {
           <img
             src="https://github-profile-trophy.vercel.app/?username=gauravghuge7&theme=darkhub&no-bg=true&no-frame=true&margin-w=15"
             alt="GitHub Trophies"
-            className="rounded-lg shadow-lg"
+            className="max-w-full h-auto rounded-lg shadow-lg"
           />
         </a>
       </p>
@@ -56,7 +56,7 @@ const GithubDashboard = () => {
 
       {/* Social Links */}
       <h3 className="text-2xl font-semibold mb-4">Connect with me:</h3>
-      <div className="flex space-x-8 mb-8">
+      <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-8">
         <a href="https://dev.to/gauravghuge_737dev.to" target="_blank" rel="noopener noreferrer">
           <img
             src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/devto.svg"
@@ -124,7 +124,7 @@ const GithubDashboard = () => {
 
       {/* Languages and Tools */}
       <h3 className="text-2xl font-semibold mb-4">Languages and Tools:</h3>
-      <div className="grid grid-cols-3 gap-8 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 sm:gap-8 mb-8 justify-items-center">
         <a href="https://aws.amazon.com" target="_blank" rel="noopener noreferrer">
           <img
             src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"

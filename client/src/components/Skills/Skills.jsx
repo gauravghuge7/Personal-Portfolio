@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { motion } from "framer-motion";
 import { skill } from "../../services/information";
 import Marquee from "../common/Marquee";
@@ -42,7 +42,7 @@ const SkillRow = ({ category, items, index, categoryType }) => {
   );
 };
 
-const SkillItem = ({ item, categoryType, glow }) => {
+const SkillItem = memo(function SkillItem({ item, categoryType, glow }) {
   const [isHovered, setIsHovered] = useState(false);
 
   const getIconColor = () => {
@@ -68,6 +68,7 @@ const SkillItem = ({ item, categoryType, glow }) => {
         <img
           src={item.icon}
           alt={item.name}
+          loading="lazy"
           className="relative w-8 h-8 object-contain dark:brightness-0 dark:invert"
         />
       </div>
@@ -77,11 +78,9 @@ const SkillItem = ({ item, categoryType, glow }) => {
       </span>
     </div>
   );
-};
+});
 
 export default function Skills() {
-  const [skills] = useState(skill);
-
   return (
     <main className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Animated background elements */}
@@ -112,7 +111,7 @@ export default function Skills() {
 
         {/* Skills Rows */}
         <div className="space-y-10">
-          {skills.map((category, index) => (
+          {skill.map((category, index) => (
             <SkillRow
               key={index}
               category={category.name}

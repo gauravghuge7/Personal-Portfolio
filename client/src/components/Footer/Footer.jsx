@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import logo from '../../../public/personal_photos/gaurav_logo.jpg';
 import { fadeInUp } from '../../utils/motionVariants';

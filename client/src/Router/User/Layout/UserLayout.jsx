@@ -20,7 +20,7 @@ const UserLayout = () => {
                <Navbar />
             </header>
 
-            <main className='mt-16 sm:mt-20'> 
+            <main className='mt-14 sm:mt-16'>
                <Outlet />
             </main>
             <footer> 

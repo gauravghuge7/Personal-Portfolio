@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Play, Pause, Maximize2, Minimize2 } from 'lucide-react';
-
-const SLIDE_DURATION = 5000;
+import { ChevronLeft, ChevronRight, X, Expand } from 'lucide-react';
 
 const photos = [
   'IMG_0397.JPG.jpeg',
@@ -29,49 +27,77 @@ const photos = [
   'IMG_8365.JPG.jpeg',
 ].map((file, i) => ({ id: i, src: `/personal_photos/${file}` }));
 
+const tileVariants = {
+  hidden: { opacity: 0, scale: 0.85, y: 20 },
+  visible: (i) => ({
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.5, delay: (i % 8) * 0.06, ease: 'easeOut' },
+  }),
+};
+
+function GalleryTile({ photo, index, onOpen }) {
+  return (
+    <motion.button
+      type="button"
+      onClick={() => onOpen(index)}
+      custom={index}
+      variants={tileVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: '-40px' }}
+      whileHover={{ scale: 0.97 }}
+      whileTap={{ scale: 0.94 }}
+      className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-surface shadow-md"
+      aria-label={`Open photo ${index + 1}`}
+    >
+      <motion.img
+        src={photo.src}
+        alt=""
+        loading="lazy"
+        className="h-full w-full object-cover"
+        whileHover={{ scale: 1.15, rotate: -1 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-black/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 scale-75 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+        <span className="rounded-full bg-white/15 p-3 backdrop-blur-sm">
+          <Expand size={20} className="text-white" />
+        </span>
+      </div>
+    </motion.button>
+  );
+}
+
 function Gallery() {
-  const [index, setIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const thumbRefs = useRef([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+  const isOpen = activeIndex !== null;
 
-  const isRunning = isPlaying && !isHovering;
-
-  const goTo = useCallback((i) => {
-    setIndex(((i % photos.length) + photos.length) % photos.length);
-  }, []);
-  const goNext = useCallback(() => goTo(index + 1), [index, goTo]);
-  const goPrev = useCallback(() => goTo(index - 1), [index, goTo]);
-
-  // Preload the next photo so the crossfade never flashes a blank frame
-  useEffect(() => {
-    const next = photos[(index + 1) % photos.length];
-    const img = new Image();
-    img.src = next.src;
-  }, [index]);
+  const close = useCallback(() => setActiveIndex(null), []);
+  const goNext = useCallback(
+    () => setActiveIndex((i) => (i + 1) % photos.length),
+    []
+  );
+  const goPrev = useCallback(
+    () => setActiveIndex((i) => (i - 1 + photos.length) % photos.length),
+    []
+  );
 
   useEffect(() => {
-    thumbRefs.current[index]?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-  }, [index]);
-
-  useEffect(() => {
+    if (!isOpen) return;
     const onKeyDown = (e) => {
+      if (e.key === 'Escape') close();
       if (e.key === 'ArrowRight') goNext();
       if (e.key === 'ArrowLeft') goPrev();
-      if (e.key === ' ') { e.preventDefault(); setIsPlaying((p) => !p); }
-      if (e.key === 'Escape') setIsExpanded(false);
     };
     window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [goNext, goPrev]);
-
-  useEffect(() => {
-    document.body.style.overflow = isExpanded ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [isExpanded]);
-
-  const kenBurnsClass = index % 2 === 0 ? 'animate-ken-burns-a' : 'animate-ken-burns-b';
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, close, goNext, goPrev]);
 
   return (
     <div className="min-h-screen bg-background py-16 px-4 sm:px-6 lg:px-8">
@@ -103,137 +129,73 @@ function Gallery() {
         </motion.p>
       </div>
 
-      <div className="max-w-5xl mx-auto">
-        <div
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-          className={`group overflow-hidden bg-black border border-border shadow-2xl ${
-            isExpanded ? 'fixed inset-0 z-[100] rounded-none border-0' : 'relative rounded-2xl h-[60vh] sm:h-[70vh]'
-          }`}
-        >
-          {/* Story-style progress bar */}
-          <div className="absolute top-0 inset-x-0 z-20 flex gap-1.5 p-3">
-            {photos.map((p, i) => (
-              <div key={p.id} className="h-1 flex-1 rounded-full bg-white/25 overflow-hidden">
-                {i < index && <div className="h-full w-full bg-white" />}
-                {i === index && (
-                  <div
-                    onAnimationEnd={() => isRunning && goNext()}
-                    className="h-full bg-white rounded-full"
-                    style={{
-                      animation: `gallery-progress ${SLIDE_DURATION}ms linear forwards`,
-                      animationPlayState: isRunning ? 'running' : 'paused',
-                    }}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
-
-          {/* Crossfading, Ken-Burns-animated photo */}
-          <AnimatePresence>
-            <motion.div
-              key={photos[index].id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.9, ease: 'easeInOut' }}
-              className="absolute inset-0"
-            >
-              <img
-                src={photos[index].src}
-                alt=""
-                className={`w-full h-full object-contain ${kenBurnsClass}`}
-                style={{
-                  animationDuration: `${SLIDE_DURATION + 400}ms`,
-                  animationPlayState: isRunning ? 'running' : 'paused',
-                }}
-              />
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Prev / next */}
-          <button
-            onClick={goPrev}
-            aria-label="Previous photo"
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/40 text-white/90 opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-all"
-          >
-            <ChevronLeft size={28} />
-          </button>
-          <button
-            onClick={goNext}
-            aria-label="Next photo"
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-black/40 text-white/90 opacity-0 group-hover:opacity-100 hover:bg-black/60 transition-all"
-          >
-            <ChevronRight size={28} />
-          </button>
-
-          {/* Bottom bar */}
-          <div className="absolute bottom-0 inset-x-0 z-20 flex items-center justify-between px-4 py-3 bg-gradient-to-t from-black/70 to-transparent">
-            <span className="text-white/80 text-xs font-mono">{index + 1} / {photos.length}</span>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setIsPlaying((p) => !p)}
-                aria-label={isPlaying ? 'Pause slideshow' : 'Play slideshow'}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
-              </button>
-              <button
-                onClick={() => setIsExpanded((e) => !e)}
-                aria-label={isExpanded ? 'Exit fullscreen' : 'View fullscreen'}
-                className="text-white/80 hover:text-white transition-colors"
-              >
-                {isExpanded ? <Minimize2 size={18} /> : <Maximize2 size={18} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Thumbnail filmstrip */}
-        {!isExpanded && (
-          <div className="mt-4 flex gap-2 overflow-x-auto pb-2">
-            {photos.map((p, i) => (
-              <button
-                key={p.id}
-                ref={(el) => (thumbRefs.current[i] = el)}
-                onClick={() => goTo(i)}
-                aria-label={`Go to photo ${i + 1}`}
-                className={`shrink-0 h-16 w-24 rounded-md overflow-hidden border-2 transition-all duration-300 ${
-                  i === index ? 'border-accent scale-105' : 'border-transparent opacity-60 hover:opacity-100'
-                }`}
-              >
-                <img src={p.src} alt="" loading="lazy" className="w-full h-full object-cover" />
-              </button>
-            ))}
-          </div>
-        )}
+      {/* Square animated grid */}
+      <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
+        {photos.map((photo, i) => (
+          <GalleryTile key={photo.id} photo={photo} index={i} onOpen={setActiveIndex} />
+        ))}
       </div>
 
-      <style>{`
-        @keyframes gallery-progress {
-          from { width: 0%; }
-          to { width: 100%; }
-        }
-        @keyframes ken-burns-a {
-          from { transform: scale(1) translate(0, 0); }
-          to { transform: scale(1.12) translate(-2%, -1%); }
-        }
-        @keyframes ken-burns-b {
-          from { transform: scale(1.1) translate(2%, 1%); }
-          to { transform: scale(1) translate(0, 0); }
-        }
-        .animate-ken-burns-a {
-          animation-name: ken-burns-a;
-          animation-timing-function: ease-out;
-          animation-fill-mode: forwards;
-        }
-        .animate-ken-burns-b {
-          animation-name: ken-burns-b;
-          animation-timing-function: ease-out;
-          animation-fill-mode: forwards;
-        }
-      `}</style>
+      {/* Lightbox */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm px-4"
+            onClick={close}
+          >
+            <button
+              onClick={close}
+              aria-label="Close"
+              className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition-colors"
+            >
+              <X size={22} />
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
+              aria-label="Previous photo"
+              className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition-colors"
+            >
+              <ChevronLeft size={28} />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+              aria-label="Next photo"
+              className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 text-white/90 hover:bg-white/20 transition-colors"
+            >
+              <ChevronRight size={28} />
+            </button>
+
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={photos[activeIndex].id}
+                src={photos[activeIndex].src}
+                alt=""
+                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
+                className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl"
+              />
+            </AnimatePresence>
+
+            <span className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm font-mono">
+              {activeIndex + 1} / {photos.length}
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

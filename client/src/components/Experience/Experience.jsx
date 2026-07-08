@@ -1,11 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, memo } from "react";
 import { motion } from "framer-motion";
 import "./Experience.css";
-import { experience as experienceData } from "../../services/information.js";
+import { experience } from "../../services/information.js";
 import Marquee from "../common/Marquee";
 import { fadeInUp } from "../../utils/motionVariants";
 
-function ExperienceCard({ exp, index, onOpenProjects }) {
+const ExperienceCard = memo(function ExperienceCard({ exp, index, onOpenProjects }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
@@ -39,11 +39,9 @@ function ExperienceCard({ exp, index, onOpenProjects }) {
       </button>
     </motion.div>
   );
-}
+});
 
 function Experience() {
-  const [experience, setExperience] = useState(experienceData);
-
   const projectRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -89,7 +87,7 @@ function Experience() {
           Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-          {experience[currentIndex]?.project.map((pro, index) => (
+          {experience[currentIndex]?.project?.map((pro, index) => (
             <div
               key={index}
               className="project-card border border-border rounded-lg p-3 sm:p-4 shadow hover:shadow-lg transition-shadow duration-300 bg-background-alt"

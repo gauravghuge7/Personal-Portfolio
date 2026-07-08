@@ -3,7 +3,7 @@
 
 export const project = [
     {
-        id: 2,
+        id: 1,
         name: 'Ecommerce and Billing Platform',
         description: 'web application for ecommerce and billing platform that can handle payments, invoices, and customers',
         dueDate: '2021-09-01',
@@ -13,7 +13,7 @@ export const project = [
         status: 'Completed',
     },
     {
-        id: 7,
+        id: 2,
         name: 'Career Guide and Preparation',
         description: 'Developed a MERN-based career guidance site with a responsive UI using React and secure APIs in Node.js. Integrated OpenAI for question paper preparation and scoring.',
         repository: 'https://github.com/gauravghuge7/Naukari-Project',
@@ -24,7 +24,7 @@ export const project = [
     },
 
     {
-        id: 6,
+        id: 3,
         name: 'Company Management System',
         description: 'Built a Jira-like system for managing teams, clients, and tasks using React and Node.js.',
         repository: 'https://github.com/gauravghuge7/company-management',
@@ -35,7 +35,7 @@ export const project = [
     },
 
     {
-        id: 2,
+        id: 4,
         name: 'Employee Management System',
         description: 'developed a web application for employee management that can check the daily tasks of employees and can also add new tasks',
         dueDate: '2021-09-01',
@@ -46,7 +46,7 @@ export const project = [
     },
     
     {
-        id: 7,
+        id: 5,
         name: 'Smart Exam Portal',
         description: 'Developer a MERN-based exam portal with a responsive UI using React and secure APIs in Node.js. Integrated OpenAI for question paper preparation and scoring.',
         repository: 'https://github.com/gauravghuge7/Naukari-Project',
@@ -57,7 +57,7 @@ export const project = [
     },
 
     {
-        id: 1,
+        id: 6,
         name: 'Personal Portfolio',
         description: 'developed in using react, tailwind and redux for frontend',
         dueDate: '2021-09-01',
@@ -67,7 +67,7 @@ export const project = [
         status: 'Completed',
     },
     {
-        id: 2,
+        id: 7,
         name: 'Old Portfolio Project',
         description: 'create a static web site using html, css, and javascript', 
         dueDate: '2021-09-01',
@@ -80,7 +80,7 @@ export const project = [
     
     
     {
-        id: 2,
+        id: 8,
         name: 'Learning Management System',
         field: "software development",
         availableFor: "mobile browsers and web browsers",
@@ -93,7 +93,7 @@ export const project = [
         notice: 'If project is not working, there is hosted on personal account, only for personal use and not for commercial use. there you can check the repository of code there is attached the hosted link youn check from there if project not working, contact me on gauravghuge737@gmail.com '
     },
     {
-        id: 5,
+        id: 9,
         name: 'Laptop Checker App',
         description: 'Designed an interface in Next.js for evaluating laptop performance, offering users actionable insights and optimized system interactions.',
         repository: 'https://github.com/gauravghuge7/Second_hand_Laptop_checker',

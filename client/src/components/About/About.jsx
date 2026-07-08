@@ -110,7 +110,7 @@ function DevTerminal() {
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.7, repeat: Infinity }}
-                className="w-[2px] h-4 bg-blue-400 self-center"
+                className="w-[2px] h-4 bg-accent self-center"
               />
             </div>
           )}
@@ -126,7 +126,7 @@ function DevTerminal() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
           <span className="relative inline-flex rounded-full w-2.5 h-2.5 bg-green-500" />
         </span>
-        <span className="text-xs font-medium bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+        <span className="text-xs font-medium bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">
           Available for work
         </span>
       </motion.div>
@@ -231,14 +231,14 @@ function About() {
         variants={glowVariants}
         initial="initial"
         animate="pulse"
-        className="absolute top-10 sm:top-20 left-4 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute top-10 sm:top-20 left-4 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-accent/10 rounded-full blur-3xl"
       />
       <motion.div
         variants={glowVariants}
         initial="initial"
         animate="pulse"
         transition={{ delay: 2 }}
-        className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-purple-500/10 rounded-full blur-3xl"
+        className="absolute bottom-10 sm:bottom-20 right-4 sm:right-10 w-64 h-64 sm:w-96 sm:h-96 bg-accent2/10 rounded-full blur-3xl"
       />
 
       {/* Grid pattern overlay */}
@@ -257,14 +257,14 @@ function About() {
         >
           <motion.div variants={itemVariants}>
             <span className="inline-flex items-center gap-2 text-muted text-base sm:text-lg font-light tracking-wide">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <div className="w-2 h-2 bg-accent rounded-full"></div>
               Hello, It&apos;s Me
             </span>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+              <span className="bg-gradient-to-r from-accent via-accent2 to-accent bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
                 Gaurav
               </span>
               <span className="block text-fg mt-2">Ghuge</span>
@@ -281,22 +281,22 @@ function About() {
 
           <motion.div variants={itemVariants} className="relative">
             <div className="text-2xl sm:text-3xl md:text-4xl font-semibold h-12 sm:h-16 flex items-center">
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent to-accent2 bg-clip-text text-transparent">
                 {displayText}
               </span>
               <motion.span
                 animate={{ opacity: [1, 0] }}
                 transition={{ duration: 0.8, repeat: Infinity }}
-                className="w-[2px] h-10 bg-blue-400 ml-1"
+                className="w-[2px] h-10 bg-accent ml-1"
               />
             </div>
-            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-lg blur-xl -z-10"></div>
+            <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-accent/10 to-accent2/10 rounded-lg blur-xl -z-10"></div>
           </motion.div>
 
           <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
             <Link
               to="/contact"
-              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 shadow-lg shadow-blue-500/20"
+              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-accent to-accent2 hover:opacity-90 transition-all duration-300 shadow-lg shadow-accent/20"
             >
               Get In Touch
             </Link>
@@ -304,7 +304,7 @@ function About() {
               href="https://www.linkedin.com/in/gaurav-ghuge-530651226/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-fg border border-border hover:border-blue-400 hover:text-blue-400 transition-all duration-300"
+              className="px-6 sm:px-8 py-3 rounded-xl font-semibold text-fg border border-border hover:border-accent hover:text-accent transition-all duration-300"
             >
               View LinkedIn
             </a>

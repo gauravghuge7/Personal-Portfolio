@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
-import ReadmeContent from "./Info.md?raw";
 import { fadeInUp } from "../../utils/motionVariants";
 
 const CopyButton = ({ label, text }) => {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(String(text));
     setCopied(true);
     setTimeout(() => setCopied(false), 1000);
   };
@@ -28,12 +26,6 @@ const CopyButton = ({ label, text }) => {
 };
 
 const ReadmeViewer = () => {
-  const [markdown, setMarkdown] = useState("");
-
-  useEffect(() => {
-    setMarkdown(ReadmeContent);
-  }, []);
-
   const info = {
     name: {
       label: "Name",
@@ -138,7 +130,7 @@ const ReadmeViewer = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-400 text-xl font-semibold"
+                    className="text-accent text-xl font-semibold"
                   >
                     {item.text}
                   </a>
@@ -164,7 +156,7 @@ const ReadmeViewer = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 underline"
+                  className="text-accent underline"
                 >
                   {link.label}
                 </a>
@@ -216,13 +208,12 @@ const ReadmeViewer = () => {
               </div>
               {exp.location && <p className="text-muted">{exp.location}</p>}
               <p className="text-muted">{exp.duration}</p>
-              <ul className="list-disc list-inside text-muted mt-2">
+              <ul className="text-muted mt-2">
                 {exp.achievements.map((achievement, i) => (
-                  <div className="flex items-center justify-between">
-                    <li key={i}>{achievement}</li>
+                  <li key={i} className="flex items-center justify-between gap-2 list-disc list-inside">
+                    <span>{achievement}</span>
                     <CopyButton label={""} text={achievement} />
-                  </div>
-                  
+                  </li>
                 ))}
               </ul>
               {exp.link && (
@@ -230,7 +221,7 @@ const ReadmeViewer = () => {
                   href={exp.link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 underline mt-2 inline-block"
+                  className="text-accent underline mt-2 inline-block"
                 >
                   {exp.link.label}
                 </a>

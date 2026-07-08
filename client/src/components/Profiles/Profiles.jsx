@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { memo } from "react";
 import { motion } from "framer-motion";
 import { FiExternalLink } from "react-icons/fi";
 import Marquee from "../common/Marquee";
 import { fadeInUp } from "../../utils/motionVariants";
 
-function ProfileCard({ item }) {
+const ProfileCard = memo(function ProfileCard({ item }) {
     return (
         <motion.a
             whileHover={{ scale: 1.02 }}
@@ -25,6 +25,7 @@ function ProfileCard({ item }) {
                 <motion.img
                     src={item.icon}
                     alt={item.title}
+                    loading="lazy"
                     className="w-24 h-24 object-contain mx-auto relative z-10"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -58,10 +59,9 @@ function ProfileCard({ item }) {
             <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-24 transition-all duration-300" />
         </motion.a>
     );
-}
+});
 
-function Profiles() {
-    const [profile] = useState([
+const profile = [
         {
             title: "GitHub",
             icon: "./github.png",
@@ -134,8 +134,9 @@ function Profiles() {
             color: "from-emerald-700 to-emerald-900",
             hoverColor: "hover:shadow-emerald-500/20 hover:border-emerald-400/30"
         },
-    ]);
+];
 
+function Profiles() {
     return (
         <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Animated background elements */}
@@ -183,7 +184,7 @@ function Profiles() {
                     className="mt-16 text-center"
                 >
                     <p className="text-muted text-sm">
-                        Feel free to connect! I'm always open to interesting conversations and collaborations.
+                        Feel free to connect! I&apos;m always open to interesting conversations and collaborations.
                     </p>
                     <div className="flex justify-center gap-6 mt-6">
                         <div className="text-center">
