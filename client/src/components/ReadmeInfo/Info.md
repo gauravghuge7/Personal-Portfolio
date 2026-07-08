@@ -18,16 +18,25 @@ Experience in building user-friendly applications and enhancing application perf
 ## 🧠 Skills
 
 - **Languages**: Java, C, C++, JavaScript, TypeScript, Python  
-- **FrontEnd**: HTML, CSS, React.js, Next.js, VanillaJs  
-- **BackEnd**: Node.js, Express.js, Spring Boot, Hibernate, REST APIs, MongoDB, MySQL  
+- **FrontEnd**: HTML, CSS, React.js, Next.js, VanillaJs, Vite, Three.js, Tailwind CSS, Bootstrap, Material UI, Chakra UI, Shadcn UI  
+- **BackEnd**: Node.js, Express.js, Spring MVC, Spring Boot, Spring Security, Hibernate, JPA, REST APIs, FastAPI, Flask, MongoDB, MySQL  
 - **Fundamentals**: DSA, OOPS, DBMS, Linux, Git  
-- **Tools**: Docker, AWS, Neo4j, LangChain, LangGraph, RAG, Multi-Modal AI, AI Agents
+- **AI & LLMs**: LangChain, LangGraph, RAG, Multi-Modal AI, AI Agents, Model Context Protocol, AI Guardrails, Fine-Tuning, Prompt Engineering, OpenAI (GPT-4), Claude, Gemini, DeepSeek, Llama-3, Grok, Ollama  
+- **Data & Databases**: Neo4j, Qdrant, PGVector, Pinecone, Docker, AWS, Azure  
+- **Data Engineering & Lakehouse**: Apache Spark, PySpark, Databricks, Delta Lake, Lakehouse Architecture, Delta Live Tables, Unity Catalog, Lakeflow Connect, ETL, Data Pipelines
 
 ---
 
 ## 💼 Experience
 
-### Full Stack Developer – Freelancer  
+### AI Engineer – Fulcrum Digital  
+📅 *July 2025 – Present* | Pune, Maharashtra, India  
+- Architect and develop AI-driven applications combining full-stack expertise with GenAI/LLM techniques.  
+- Hands-on with GPT-4, Claude, Gemini, DeepSeek, and Llama-3 using LangChain, LangGraph, and Hugging Face Transformers.  
+- Implemented RAG, memory-aware AI agents, and context-aware applications with Pinecone, PGVector, and Neo4j.  
+- Delivered an AI-powered legal document assistant, candidate search engine, website chatbot, and resume analysis tool.
+
+### Full Stack Developer – Freelancer (E-Commerce & Billing Platform)  
 📅 *Sep 2024 – Apr 2025*  
 - Built secure e-commerce and billing platform supporting digital payments and 2,000+ concurrent users.  
 - Integrated Razorpay & Delhivery APIs, improved performance by 40% with CDN, lazy loading, and resilient infrastructure.

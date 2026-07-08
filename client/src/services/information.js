@@ -109,14 +109,47 @@ export const project = [
 
 export const experience = [
     {
+        id: 3,
+        company: "Fulcrum Digital",
+        address: "Pune, Maharashtra, India",
+        position: "AI Engineer",
+        startDate: "July 2025",
+        endDate: "Present",
+        description:
+        "Architect and develop AI-driven applications, leveraging full-stack expertise to solve complex business challenges. Hands-on with Generative AI and LLMs (GPT-4, Claude, Gemini, DeepSeek, Llama-3) using LangChain, LangGraph, and Hugging Face Transformers. Implemented RAG, memory-aware AI agents, and context-aware applications with vector databases (Pinecone, PGVector, Neo4j) for intelligent document and knowledge-based systems. Delivered end-to-end AI projects including an AI-powered legal document assistant, a candidate search engine, a website chatbot, and a resume analysis tool.",
+        project: [
+        {
+            id: 1,
+            name: "AI-Powered Legal Document Assistant",
+            description:
+            "RAG-based assistant for legal document review and knowledge retrieval, built with vector databases and LLM orchestration.",
+            url: "",
+            repository: "",
+            image: "",
+            technologies: "Python, LangChain, RAG, Vector DBs",
+        },
+        {
+            id: 2,
+            name: "Candidate Search Engine & Resume Analysis Tool",
+            description:
+            "AI-driven tools for candidate discovery and automated resume analysis using LLMs and semantic search.",
+            url: "",
+            repository: "",
+            image: "",
+            technologies: "Python, LLMs, Semantic Search",
+        },
+        ],
+    },
+
+    {
         id: 1,
         company: "Arohi Software",
         address: "Shrigonda, Ahmednagar, Maharashtra, India",
-        position: "Full Stack Developer",
-        startDate: "07 May 2025",
-        endDate: "18 August 2025",
+        position: "Full Stack Developer Intern",
+        startDate: "07 May 2024",
+        endDate: "18 September 2024",
         description:
-        "I started my first job as a full stack developer in May 2024. I am very interested in learning new things and I am ready to work on industry live projects.",
+        "Worked on Node.js to handle payment acceptance and verification, and integrated third-party APIs like Cloudinary, Razorpay, and AWS to streamline storage and payment processing. Developed an Employee Management System using the MERN stack and collaborated on a Learning Management System project.",
         project: [
         {
             id: 1,
@@ -202,3 +235,124 @@ export const education = [
     }
 ]
 
+const iconUrl = (slug) => `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${slug}.svg`;
+
+export const skill = [
+    {
+      name: "Agentic AI & Generative AI",
+      type: "ai",
+      items: [
+        { name: "Agentic AI Workflows", icon: iconUrl("n8n") },
+        { name: "AI Agents & Multi-Agent Systems", icon: iconUrl("crewai") },
+        { name: "LangChain", icon: iconUrl("langchain") },
+        { name: "LangGraph", icon: iconUrl("langgraph") },
+        { name: "RAG", icon: iconUrl("haystack") },
+        { name: "Prompt Engineering", icon: iconUrl("openai") },
+        { name: "Memory-Aware Agents", icon: iconUrl("redis") },
+        { name: "Fine-Tuning", icon: iconUrl("huggingface") },
+        { name: "Hugging Face", icon: iconUrl("huggingface") },
+        { name: "OpenAI (GPT-4/4o)", icon: iconUrl("openai") },
+        { name: "Claude", icon: iconUrl("anthropic") },
+        { name: "Gemini", icon: iconUrl("google") },
+        { name: "DeepSeek", icon: iconUrl("deepseek") },
+        { name: "Llama-3", icon: iconUrl("meta") },
+        { name: "Grok", icon: iconUrl("x") },
+        { name: "Ollama", icon: iconUrl("ollama") },
+        { name: "Model Context Protocol", icon: iconUrl("anthropic") },
+        { name: "AI Guardrails", icon: iconUrl("openai") },
+        { name: "Multi-Modal AI", icon: iconUrl("openai") },
+        { name: "Vector Databases", icon: iconUrl("milvus") },
+      ]
+    },
+    {
+      name: "Backend (Python & AI APIs)",
+      type: "backend",
+      items: [
+        { name: "Python", icon: iconUrl("python") },
+        { name: "FastAPI", icon: iconUrl("fastapi") },
+        { name: "Flask", icon: iconUrl("flask") },
+        { name: "REST APIs", icon: iconUrl("postman") },
+        { name: "Async APIs", icon: iconUrl("fastapi") },
+        { name: "Microservices", icon: iconUrl("docker") },
+        { name: "JWT Authentication", icon: iconUrl("jsonwebtokens") },
+        { name: "AI Inference APIs", icon: iconUrl("replicate") },
+      ]
+    },
+    {
+      name: "Frontend (JavaScript Ecosystem)",
+      type: "frontend",
+      items: [
+        { name: "JavaScript", icon: iconUrl("javascript") },
+        { name: "TypeScript", icon: iconUrl("typescript") },
+        { name: "React.js", icon: iconUrl("react") },
+        { name: "Next.js", icon: iconUrl("nextdotjs") },
+        { name: "Vue.js", icon: iconUrl("vuedotjs") },
+        { name: "Redux / Zustand", icon: iconUrl("redux") },
+        { name: "Vite", icon: iconUrl("vite") },
+        { name: "Three.js", icon: iconUrl("threedotjs") },
+        { name: "Tailwind CSS", icon: iconUrl("tailwindcss") },
+        { name: "Bootstrap", icon: iconUrl("bootstrap") },
+        { name: "Material UI", icon: iconUrl("mui") },
+        { name: "Chakra UI", icon: iconUrl("chakraui") },
+        { name: "Shadcn UI", icon: iconUrl("react") },
+      ]
+    },
+    {
+      name: "Backend (JavaScript & Java)",
+      type: "backend",
+      items: [
+        { name: "Node.js", icon: iconUrl("nodedotjs") },
+        { name: "Express.js", icon: iconUrl("express") },
+        { name: "MVC Architecture", icon: iconUrl("diagramsdotnet") },
+        { name: "Java", icon: iconUrl("java") },
+        { name: "Spring MVC", icon: iconUrl("spring") },
+        { name: "Spring Boot", icon: iconUrl("springboot") },
+        { name: "Spring Security", icon: iconUrl("springsecurity") },
+        { name: "Hibernate / JPA", icon: iconUrl("hibernate") },
+      ]
+    },
+    {
+      name: "Core & Systems",
+      type: "systems",
+      items: [
+        { name: "C++", icon: iconUrl("cplusplus") },
+        { name: "Qt Creator", icon: iconUrl("qt") },
+        { name: "Data Structures & Algorithms", icon: iconUrl("leetcode") },
+        { name: "OOPS", icon: iconUrl("uml") },
+        { name: "System Design", icon: iconUrl("miro") },
+      ]
+    },
+    {
+      name: "Databases & DevOps",
+      type: "databases",
+      items: [
+        { name: "MongoDB", icon: iconUrl("mongodb") },
+        { name: "MySQL", icon: iconUrl("mysql") },
+        { name: "Neo4j", icon: iconUrl("neo4j") },
+        { name: "Qdrant", icon: iconUrl("qdrant") },
+        { name: "PGVector", icon: iconUrl("postgresql") },
+        { name: "Docker", icon: iconUrl("docker") },
+        { name: "AWS", icon: iconUrl("amazonaws") },
+        { name: "Azure", icon: iconUrl("microsoftazure") },
+        { name: "CI/CD", icon: iconUrl("githubactions") },
+        { name: "Linux", icon: iconUrl("linux") },
+        { name: "Git & GitHub", icon: iconUrl("github") },
+      ]
+    },
+    {
+      name: "Data Engineering & Lakehouse",
+      type: "data",
+      items: [
+        { name: "Apache Spark", icon: iconUrl("apachespark") },
+        { name: "PySpark", icon: iconUrl("apachespark") },
+        { name: "Databricks", icon: iconUrl("databricks") },
+        { name: "Delta Lake", icon: iconUrl("databricks") },
+        { name: "Lakehouse Architecture", icon: iconUrl("databricks") },
+        { name: "Delta Live Tables", icon: iconUrl("databricks") },
+        { name: "Unity Catalog", icon: iconUrl("databricks") },
+        { name: "Lakeflow Connect", icon: iconUrl("databricks") },
+        { name: "Data Pipelines & ETL", icon: iconUrl("databricks") },
+        { name: "Azure Data Lake", icon: iconUrl("microsoftazure") },
+      ]
+    }
+]

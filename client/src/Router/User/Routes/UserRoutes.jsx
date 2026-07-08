@@ -11,6 +11,7 @@ import Contact from '../../../components/Contact/Contact';
 import Skills from '../../../components/Skills/Skills';
 import Journey from '../../../components/Journey/Journey';
 import ReadmeViewer from '../../../components/ReadmeInfo/ReadmeViewer';
+import Gallery from '../../../components/Gallery/Gallery';
 
 const UserRoutes = () => {
    return (
@@ -26,6 +27,7 @@ const UserRoutes = () => {
 
                   <Route path='/experience/:id' element={<Experience />} />
                   <Route path='/skills' element={<Skills />} />
+                  <Route path='/gallery' element={<Gallery />} />
                   <Route path='/contact' element={<Contact />} />
                   <Route path='/Information' element={<ReadmeViewer />} />
 

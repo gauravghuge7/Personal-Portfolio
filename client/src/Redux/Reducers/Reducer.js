@@ -2,8 +2,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
+const getInitialDarkMode = () => {
+    const stored = localStorage.getItem('darkMode');
+    if (stored !== null) return stored === 'true';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 const initialState = {
-    darkMode: true,
+    darkMode: getInitialDarkMode(),
 }
 
 
@@ -12,11 +18,10 @@ const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        switchThemeToDark: (state, action) => {
-            
-            state.darkMode = action.payload
+        toggleTheme: (state) => {
+            state.darkMode = !state.darkMode
         },
-        switchThemeToLight: (state, action) => {
+        setTheme: (state, action) => {
             state.darkMode = action.payload
         }
     }
@@ -24,4 +29,4 @@ const mainSlice = createSlice({
 
 export default mainSlice.reducer
 
-export const  {switchThemeToDark, switchThemeToLight} = mainSlice.actions
+export const { toggleTheme, setTheme } = mainSlice.actions

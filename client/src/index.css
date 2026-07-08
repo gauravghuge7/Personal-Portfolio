@@ -2,3 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-bg: 255 255 255;
+    --color-bg-alt: 244 244 245;
+    --color-surface: 255 255 255;
+    --color-fg: 24 24 27;
+    --color-muted: 113 113 122;
+    --color-border: 228 228 231;
+    --color-accent: 37 99 235;
+    --color-accent2: 8 145 178;
+  }
+
+  .dark {
+    --color-bg: 9 9 11;
+    --color-bg-alt: 24 24 27;
+    --color-surface: 24 24 27;
+    --color-fg: 244 244 245;
+    --color-muted: 161 161 170;
+    --color-border: 39 39 42;
+    --color-accent: 59 130 246;
+    --color-accent2: 34 211 238;
+  }
+
+  body {
+    @apply bg-background text-fg font-sans transition-colors duration-300;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
+

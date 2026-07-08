@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import ReadmeContent from "./Info.md?raw";
+import { fadeInUp } from "../../utils/motionVariants";
 
 const CopyButton = ({ label, text }) => {
   const [copied, setCopied] = useState(false);
@@ -17,7 +19,7 @@ const CopyButton = ({ label, text }) => {
       className={`ml-4 px-3 py-1 text-sm font-medium rounded transition-all duration-200 ${
         copied
           ? "bg-green-600 text-white"
-          : "bg-gray-700 text-white hover:bg-gray-600"
+          : "bg-background-alt text-fg hover:bg-border"
       }`}
     >
       {copied ? "Copied!" : `Copy ${label}`}
@@ -115,16 +117,21 @@ const ReadmeViewer = () => {
   ];
 
   return (
-    <div className="p-4 mt-12 bg-black text-white">
-      <div className="flex flex-col gap-6 h-full">
+    <div className="p-4 mt-12 bg-background text-fg">
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="flex flex-col gap-6 h-full">
         {/* Personal Information in Two Columns */}
-        <div className="md:w-full bg-gray-900 rounded p-6 max-h-full">
+        <div className="md:w-full bg-surface border border-border rounded p-6 max-h-full">
           <h2 className="text-3xl font-bold mb-4">Personal Information</h2>
           <div className="grid grid-cols-2 gap-3">
             {[info.name, info.email, info.phone, info.location].map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between bg-gray-800 hover:bg-gray-700 p-4 rounded mb-3 transition"
+                className="flex items-center justify-between bg-background-alt hover:bg-border p-4 rounded mb-3 transition"
               >
                 {item.link ? (
                   <a
@@ -145,13 +152,13 @@ const ReadmeViewer = () => {
         </div>
 
         {/* Profile Links in Two Columns */}
-        <div className="md:w-full bg-gray-900 rounded p-6 max-h-full">
+        <div className="md:w-full bg-surface border border-border rounded p-6 max-h-full">
           <h3 className="text-2xl font-semibold mb-4">🔗 Profiles</h3>
           <div className="grid grid-cols-2 gap-3">
             {info.links.map((link) => (
               <div
                 key={link.label}
-                className="flex items-center justify-between bg-gray-800 hover:bg-gray-700 p-3 rounded transition"
+                className="flex items-center justify-between bg-background-alt hover:bg-border p-3 rounded transition"
               >
                 <a
                   href={link.url}
@@ -168,21 +175,21 @@ const ReadmeViewer = () => {
         </div>
 
         {/* Education Section */}
-        <div className="md:w-full bg-gray-900 rounded p-6 ">
+        <div className="md:w-full bg-surface border border-border rounded p-6 ">
           <h3 className="text-2xl font-semibold mb-4">🎓 Education</h3>
           {education.map((edu, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-4 rounded mb-3 transition hover:bg-gray-700"
+              className="bg-background-alt p-4 rounded mb-3 transition hover:bg-border"
             >
               <h4 className="text-xl font-semibold">{edu.degree}</h4>
               <div className="flex items-center justify-between">
-                <p className="text-gray-300">{edu.schoolName}</p>
+                <p className="text-muted">{edu.schoolName}</p>
                 <CopyButton label={""} text={edu.schoolName} /> 
               </div>
-              <p className="text-gray-400">{edu.year} | {edu.major}</p>
+              <p className="text-muted">{edu.year} | {edu.major}</p>
               <div className="flex items-center justify-between">
-                <p className="text-gray-300">{edu.percentage}</p>
+                <p className="text-muted">{edu.percentage}</p>
                 <CopyButton label={""} text={edu.percentage} /> 
               </div>
             </div>
@@ -190,12 +197,12 @@ const ReadmeViewer = () => {
         </div>
 
         {/* Experience Section */}
-        <div className="md:w-full bg-gray-900 rounded p-6 max-h-full">
+        <div className="md:w-full bg-surface border border-border rounded p-6 max-h-full">
           <h3 className="text-2xl font-semibold mb-4">💼 Experience</h3>
           {experience.map((exp, index) => (
             <div
               key={index}
-              className="bg-gray-800 p-4 rounded mb-3 transition hover:bg-gray-700"
+              className="bg-background-alt p-4 rounded mb-3 transition hover:bg-border"
             >
             
               <div className="flex items-center justify-between">
@@ -204,12 +211,12 @@ const ReadmeViewer = () => {
               </div>
 
               <div className="flex items-center justify-between">
-                 {exp.company && <p className="text-gray-300">{exp.company}</p>}
+                 {exp.company && <p className="text-muted">{exp.company}</p>}
                  {exp.company && <CopyButton label={""} text={exp.company} />}
               </div>
-              {exp.location && <p className="text-gray-400">{exp.location}</p>}
-              <p className="text-gray-400">{exp.duration}</p>
-              <ul className="list-disc list-inside text-gray-300 mt-2">
+              {exp.location && <p className="text-muted">{exp.location}</p>}
+              <p className="text-muted">{exp.duration}</p>
+              <ul className="list-disc list-inside text-muted mt-2">
                 {exp.achievements.map((achievement, i) => (
                   <div className="flex items-center justify-between">
                     <li key={i}>{achievement}</li>
@@ -231,7 +238,7 @@ const ReadmeViewer = () => {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

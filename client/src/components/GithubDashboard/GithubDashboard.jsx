@@ -1,11 +1,18 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { fadeInUp } from '../../utils/motionVariants';
 
 const GithubDashboard = () => {
   return (
-    <div className="flex flex-col items-center p-6 bg-black text-white min-h-screen">
+    <motion.div
+      variants={fadeInUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className="flex flex-col items-center p-6 bg-background text-fg min-h-screen">
       {/* Header Section */}
-      <h1 className="text-5xl font-bold mb-2 text-gray-100">Hi 👋, I am Gaurav Ashok Ghuge</h1>
-      <h3 className="text-2xl text-gray-400 mb-6">A passionate software engineer from India</h3>
+      <h1 className="text-5xl font-bold mb-2 text-fg">Hi 👋, I am Gaurav Ashok Ghuge</h1>
+      <h3 className="text-2xl text-muted mb-6">A passionate software engineer from India</h3>
 
       {/* Profile Views */}
       <p className="mb-6">
@@ -37,7 +44,7 @@ const GithubDashboard = () => {
       </p>
 
       {/* Current Work */}
-      <h4 className="text-xl font-semibold text-gray-200 mb-2">
+      <h4 className="text-xl font-semibold text-fg mb-2">
         🔭 I’m currently working as an intern at Arohi Softwares as a full stack developer on
       </h4>
       <p className="text-blue-500 underline mb-6">
@@ -181,7 +188,7 @@ const GithubDashboard = () => {
           />
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

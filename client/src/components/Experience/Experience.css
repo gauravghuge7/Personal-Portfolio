@@ -3,14 +3,6 @@
   margin: 0 auto;
 }
 
-.experience-card {
-  background-color: #1a1a1a;
-}
-
-.experience-card:hover {
-  transform: translateY(-5px);
-}
-
 .custom-dialog {
   position: relative;
   max-width: 800px;
@@ -27,8 +19,4 @@
 
 button {
   cursor: pointer;
-}
-
-hr {
-  border: 1px solid #444;
 }

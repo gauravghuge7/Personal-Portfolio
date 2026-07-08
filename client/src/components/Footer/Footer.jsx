@@ -1,35 +1,42 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import logo from '../../../public/personal_photos/gaurav_logo.jpg';
+import { fadeInUp } from '../../utils/motionVariants';
 
 function Footer() {
   return (
-    <footer className='bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 text-white py-12'>
-      <div className='container px-4'>
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
+    <footer className='bg-surface text-fg border-t border-border py-8 sm:py-12'>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className='container mx-auto px-4 sm:px-6 lg:px-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8'>
 
           {/* Logo Section */}
-          <div className='space-y-4'>
-            <h3 className='text-2xl font-bold text-yellow-400'>GAURAV GHUGE</h3>
-            <p className='text-gray-300'>
+          <div className='space-y-3 sm:space-y-4'>
+            <h3 className='text-xl sm:text-2xl font-bold text-accent'>GAURAV GHUGE</h3>
+            <p className='text-sm sm:text-base text-muted'>
               Full Stack Developer passionate about AI, scalable systems, and real-world solutions.
             </p>
-            <img src={logo} alt="logo" className='w-16 h-16 rounded-full object-cover' />
+            <img src={logo} alt="logo" className='w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover' />
           </div>
 
           {/* About Section */}
-          <div className='space-y-4'>
-            <h3 className='text-xl font-semibold text-yellow-400'>About</h3>
-            <p className='text-gray-300'>
+          <div className='space-y-3 sm:space-y-4'>
+            <h3 className='text-lg sm:text-xl font-semibold text-accent'>About</h3>
+            <p className='text-sm sm:text-base text-muted'>
               Innovative developer with experience in modern web technologies, backend systems, and AI integrations.
             </p>
             <div
-              className='bg-gray-800 p-3 rounded-lg hover:bg-gray-700 transition duration-300 text-center transform hover:scale-105'
+              className='bg-background-alt p-2 sm:p-3 rounded-lg hover:bg-border transition duration-300 text-center transform hover:scale-105'
             >
               <a
                 href="https://drive.google.com/file/d/12QRsrUyt8NHMVAegAF_kfFuHj27Dv9OI/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className='text-base text-white hover:text-yellow-400 transition duration-300'
+                className='text-sm sm:text-base text-fg hover:text-accent transition duration-300'
               >
                 View Resume
               </a>
@@ -37,9 +44,9 @@ function Footer() {
           </div>
 
           {/* Connect Section */}
-          <div className='space-y-4'>
-            <h3 className='text-xl font-semibold text-yellow-400'>Connect</h3>
-            <div className='grid grid-cols-3 gap-2'>
+          <div className='space-y-3 sm:space-y-4'>
+            <h3 className='text-lg sm:text-xl font-semibold text-accent'>Connect</h3>
+            <div className='grid grid-cols-2 sm:grid-cols-3 gap-2'>
               {[
                 { name: 'GitHub', url: 'https://github.com/gauravghuge7' },
                 { name: 'LeetCode', url: 'https://leetcode.com/gauravghuge7/' },
@@ -52,13 +59,13 @@ function Footer() {
               ].map((link) => (
                 <div
                   key={link.name}
-                  className='hover:bg-gray-700 transition duration-300 text-center transform hover:scale-105'
+                  className='bg-background-alt p-2 rounded hover:bg-border transition duration-300 text-center transform hover:scale-105'
                 >
                   <a
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className='text-base text-white hover:text-yellow-400 transition duration-300'
+                    className='text-xs sm:text-sm text-fg hover:text-accent transition duration-300 block'
                   >
                     {link.name}
                   </a>
@@ -68,8 +75,8 @@ function Footer() {
           </div>
 
           {/* Skills Section */}
-          <div className='space-y-4'>
-            <h3 className='text-xl font-semibold text-yellow-400'>Skills</h3>
+          <div className='space-y-3 sm:space-y-4'>
+            <h3 className='text-lg sm:text-xl font-semibold text-accent'>Skills</h3>
             <div className='flex flex-wrap gap-2'>
               {[
                 'Java', 'C++', 'JavaScript', 'TypeScript', 'Python',
@@ -79,7 +86,7 @@ function Footer() {
               ].map(skill => (
                 <span
                   key={skill}
-                  className='px-3 py-1 bg-gray-800 rounded-full text-sm'
+                  className='px-2 sm:px-3 py-1 bg-background-alt text-fg rounded-full text-xs sm:text-sm'
                 >
                   {skill}
                 </span>
@@ -89,12 +96,12 @@ function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className='mt-6 border-t border-gray-700 text-center pt-4'>
-          <p className='text-gray-300'>
+        <div className='mt-6 sm:mt-8 border-t border-border text-center pt-4'>
+          <p className='text-sm sm:text-base text-muted'>
             © {new Date().getFullYear()} Gaurav Ghuge. All rights reserved.
           </p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

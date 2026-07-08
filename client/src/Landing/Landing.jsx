@@ -15,15 +15,6 @@ import Profiles from "../components/Profiles/Profiles.jsx"
 function Landing() {
   return (
     <div>
-
-
-      <button className="fixed font-semibold text-2xl bottom-12 left-[45%] border-2 border-green-400 rounded-2xl bg-black text-green-400 p-2 ">
-
-        <a href="mailto:gauravghuge737@gmail.com"> Hire Me <br />Lets Talk </a>
-      
-      </button>
-
-
       <About />
 
       <Skills />

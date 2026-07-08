@@ -99,80 +99,97 @@ const Journey = () => {
 
 
   return (
-    <div className="w-[80%] mx-auto">
-      <h1 className="text-4xl font-bold mb-10 text-center">My Journey</h1>
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 bg-background">
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12 text-center text-fg">My Journey</h1>
 
-      <aside
-         id='vertical-cards'
-      >
-
-         <main
-            className='flex gap-30 w-[90%] ml-20'
-         > 
-
-            <mark id='line' className='h-[36rem] w-2 bg-black ' ></mark>
-
-            <article className="w-full max-w-4xl py-10 flex justify-center items-center mx-auto">
-               <div className="w-[80%]  bg-gradient-to-b from-blue-600 to-teal-400 text-white rounded-3xl shadow-2xl transform transition-transform duration-300 hover:scale-105 hover:shadow-xl overflow-hidden flex flex-col items-center justify-between text-center p-8">
-
-               <div className="w-full">
-                  <h2 className="text-5xl font-extrabold mb-6 drop-shadow-lg">{bcs.title}</h2>
-                  <p className="text-lg leading-relaxed px-6 sm:px-12">
-                     {bcs.description}
-                  </p>
+      <div className="space-y-8 sm:space-y-12">
+         {/* Education Section */}
+         <div className="relative">
+            {/* Vertical Line - Hidden on mobile, visible on md+ */}
+            <div className="hidden md:block absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 to-teal-400"></div>
+            
+            {/* Content Card */}
+            <div className="ml-0 md:ml-12 lg:ml-16">
+               <div className="bg-gradient-to-b from-blue-600 to-teal-400 text-white rounded-2xl sm:rounded-3xl shadow-2xl transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden flex flex-col items-center justify-between text-center p-6 sm:p-8 lg:p-10">
+                  <div className="w-full">
+                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 drop-shadow-lg">{bcs.title}</h2>
+                     <p className="text-base sm:text-lg leading-relaxed px-2 sm:px-6 lg:px-12 whitespace-pre-line">
+                        {bcs.description}
+                     </p>
+                  </div>
+                  <div className="flex items-center space-x-4 sm:space-x-6 mt-4 sm:mt-6">
+                     <span className="bg-white text-blue-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
+                        💼
+                     </span>
+                     <span className="bg-white text-teal-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
+                        🚀
+                     </span>
+                  </div>
                </div>
-               <div className="flex items-center space-x-6 mt-6">
-                  <span className="bg-white text-blue-500 rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
-                     💼
-                  </span>
-                  <span className="bg-white text-teal-500 rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
-                     🚀
-                  </span>
+            </div>
+         </div>
+
+         {/* Horizontal Line - Hidden on mobile, visible on md+ */}
+         <div className="hidden md:block h-1 bg-gradient-to-r from-blue-600 to-teal-400 ml-4"></div>
+
+         {/* Work Experience Section */}
+         <div className="relative">
+            {/* Vertical Line - Hidden on mobile, visible on md+ */}
+            <div className="hidden md:block absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 to-teal-400"></div>
+            
+            {/* Content Card */}
+            <div className="ml-0 md:ml-12 lg:ml-16">
+               <div className="bg-gradient-to-b from-blue-600 to-teal-400 text-white rounded-2xl sm:rounded-3xl shadow-2xl transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden flex flex-col items-center justify-between text-center p-6 sm:p-8 lg:p-10">
+                  <div className="w-full">
+                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 sm:mb-6 drop-shadow-lg">{arohi.title}</h2>
+                     <p className="text-base sm:text-lg leading-relaxed px-2 sm:px-6 lg:px-12 whitespace-pre-line">
+                        {arohi.description}
+                     </p>
+                  </div>
+                  <div className="flex items-center space-x-4 sm:space-x-6 mt-4 sm:mt-6">
+                     <span className="bg-white text-blue-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
+                        💼
+                     </span>
+                     <span className="bg-white text-teal-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
+                        🚀
+                     </span>
+                  </div>
                </div>
+            </div>
+         </div>
+
+         {/* Projects Section */}
+         {projects.map((project, index) => (
+            <div key={index} className="relative">
+               {/* Vertical Line - Hidden on mobile, visible on md+ */}
+               {index < projects.length - 1 && (
+                  <div className="hidden md:block absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 to-teal-400"></div>
+               )}
+               
+               {/* Content Card */}
+               <div className="ml-0 md:ml-12 lg:ml-16">
+                  <div className="bg-gradient-to-b from-blue-600 to-teal-400 text-white rounded-2xl sm:rounded-3xl shadow-2xl transform transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl overflow-hidden flex flex-col items-center justify-between text-center p-6 sm:p-8 lg:p-10">
+                     <div className="w-full">
+                        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold mb-4 sm:mb-6 drop-shadow-lg">{project.title}</h2>
+                        <p className="text-base sm:text-lg leading-relaxed px-2 sm:px-6 lg:px-12 whitespace-pre-line">
+                           {project.description}
+                        </p>
+                     </div>
+                     <div className="flex items-center justify-center mt-4 sm:mt-6">
+                        <span className="bg-white text-blue-500 rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-2xl sm:text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
+                           {project.icon}
+                        </span>
+                     </div>
+                  </div>
                </div>
-            </article>
 
-         </main>
-
-
-         <div id='line' className='h-2 ml-20 w-[85%] bg-black' ></div>
-
-         <main
-            className='flex gap-40 w-[90%] ml-5'
-         > 
-
-            <article className="w-full max-w-4xl py-10 flex justify-center items-center mx-auto">
-               <div className="w-[80%]  bg-gradient-to-b from-blue-600 to-teal-400 text-white rounded-3xl shadow-2xl transform transition-transform duration-300 hover:scale-105 hover:shadow-xl overflow-hidden flex flex-col items-center justify-between text-center p-8">
-
-               <div className="w-full">
-                  <h2 className="text-5xl font-extrabold mb-6 drop-shadow-lg">{arohi.title}</h2>
-                  <p className="text-lg leading-relaxed px-6 sm:px-12">
-                     {arohi.description}
-                  </p>
-               </div>
-               <div className="flex items-center space-x-6 mt-6">
-                  <span className="bg-white text-blue-500 rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
-                     💼
-                  </span>
-                  <span className="bg-white text-teal-500 rounded-full w-16 h-16 flex items-center justify-center text-3xl shadow-md transform transition-transform duration-300 hover:scale-110">
-                     🚀
-                  </span>
-               </div>
-               </div>
-            </article>
-
-            <mark id='line' className='h-[32rem] w-2 bg-black '> </mark>
-
-         </main>
-
-         
-         
-
-
-      
-      </aside>
-
-
+               {/* Horizontal Line between projects - Hidden on mobile, visible on md+ */}
+               {index < projects.length - 1 && (
+                  <div className="hidden md:block h-1 bg-gradient-to-r from-blue-600 to-teal-400 ml-4 my-8"></div>
+               )}
+            </div>
+         ))}
+      </div>
    </div>
 );
 };

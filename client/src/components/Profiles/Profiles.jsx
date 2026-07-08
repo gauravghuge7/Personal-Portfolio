@@ -1,9 +1,67 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiExternalLink } from "react-icons/fi";
+import Marquee from "../common/Marquee";
+import { fadeInUp } from "../../utils/motionVariants";
+
+function ProfileCard({ item }) {
+    return (
+        <motion.a
+            whileHover={{ scale: 1.02 }}
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`group relative w-64 sm:w-72 h-full flex flex-col backdrop-blur-sm bg-surface/60 border border-border rounded-2xl p-6 transition-all duration-500 ${item.hoverColor} hover:bg-surface/90 cursor-pointer overflow-hidden block`}
+        >
+            {/* Gradient Background Overlay */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10`} />
+
+            {/* Card Glow Effect */}
+            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500 group-hover:duration-200 -z-20" />
+
+            {/* Icon Container */}
+            <div className="relative mb-6">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
+                <motion.img
+                    src={item.icon}
+                    alt={item.title}
+                    className="w-24 h-24 object-contain mx-auto relative z-10"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                />
+            </div>
+
+            {/* Content */}
+            <div className="space-y-4 text-center flex flex-col flex-1">
+                <h3 className="text-xl font-bold">
+                    <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                        {item.title}
+                    </span>
+                </h3>
+
+                <p className="text-muted text-sm leading-relaxed line-clamp-2 flex-1">
+                    {item.description}
+                </p>
+
+                <div className="pt-4 border-t border-border mt-auto">
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="text-muted text-sm">@</span>
+                        <span className="text-fg font-medium group-hover:text-fg transition-colors duration-300">
+                            {item.username}
+                        </span>
+                        <FiExternalLink className="w-4 h-4 text-muted group-hover:text-cyan-400 transition-colors duration-300" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Hover Indicator */}
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-24 transition-all duration-300" />
+        </motion.a>
+    );
+}
 
 function Profiles() {
-    const [profile, setProfile] = useState([
+    const [profile] = useState([
         {
             title: "GitHub",
             icon: "./github.png",
@@ -78,35 +136,12 @@ function Profiles() {
         },
     ]);
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
-            }
-        }
-    };
-
-    const cardVariants = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut"
-            }
-        }
-    };
-
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-950 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             {/* Animated background elements */}
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent" />
             <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-            
+
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
                 <motion.div
@@ -116,81 +151,28 @@ function Profiles() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                        <span className="bg-gradient-to-r from-fg via-fg to-muted bg-clip-text text-transparent">
                             My Profiles
                         </span>
                     </h2>
-                    <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-lg text-muted max-w-2xl mx-auto">
                         Connect with me across platforms where I share my work, insights, and journey
                     </p>
                     <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto mt-6 rounded-full" />
                 </motion.div>
 
-                {/* Profiles Grid */}
+                {/* Profiles Row */}
                 <motion.div
-                    variants={containerVariants}
+                    variants={fadeInUp}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.2 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                 >
-                    {profile.map((item, index) => (
-                        <motion.a
-                            key={index}
-                            variants={cardVariants}
-                            href={item.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`group relative backdrop-blur-sm bg-white/5 border border-white/10 rounded-2xl p-6 transition-all duration-500 hover:scale-[1.02] ${item.hoverColor} hover:bg-white/[0.08] cursor-pointer overflow-hidden`}
-                        >
-                            {/* Gradient Background Overlay */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10`} />
-                            
-                            {/* Card Glow Effect */}
-                            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-500 rounded-2xl opacity-0 group-hover:opacity-20 blur transition duration-500 group-hover:duration-200 -z-20" />
-                            
-                            {/* Icon Container */}
-                            <div className="relative mb-6">
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500" />
-                                <motion.img
-                                    src={item.icon}
-                                    alt={item.title}
-                                    className="w-24 h-24 object-contain mx-auto relative z-10"
-                                    whileHover={{ scale: 1.1 }}
-                                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                                />
-                            </div>
-
-                            {/* Content */}
-                            <div className="space-y-4 text-center">
-                                {/* Title */}
-                                <h3 className="text-xl font-bold">
-                                    <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                                        {item.title}
-                                    </span>
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-gray-300 text-sm leading-relaxed">
-                                    {item.description}
-                                </p>
-
-                                {/* Username */}
-                                <div className="pt-4 border-t border-white/10">
-                                    <div className="flex items-center justify-center gap-2">
-                                        <span className="text-gray-400 text-sm">@</span>
-                                        <span className="text-gray-200 font-medium group-hover:text-white transition-colors duration-300">
-                                            {item.username}
-                                        </span>
-                                        <FiExternalLink className="w-4 h-4 text-gray-400 group-hover:text-cyan-400 transition-colors duration-300" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Hover Indicator */}
-                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full group-hover:w-24 transition-all duration-300" />
-                        </motion.a>
-                    ))}
+                    <Marquee
+                        items={profile}
+                        speed={profile.length * 6}
+                        renderItem={(item) => <ProfileCard item={item} />}
+                    />
                 </motion.div>
 
                 {/* Stats/Footer Note */}
@@ -200,21 +182,21 @@ function Profiles() {
                     transition={{ delay: 0.5, duration: 0.8 }}
                     className="mt-16 text-center"
                 >
-                    <p className="text-gray-400 text-sm">
+                    <p className="text-muted text-sm">
                         Feel free to connect! I'm always open to interesting conversations and collaborations.
                     </p>
                     <div className="flex justify-center gap-6 mt-6">
                         <div className="text-center">
                             <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">8</div>
-                            <div className="text-gray-400 text-sm">Platforms</div>
+                            <div className="text-muted text-sm">Platforms</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">24/7</div>
-                            <div className="text-gray-400 text-sm">Active</div>
+                            <div className="text-muted text-sm">Active</div>
                         </div>
                         <div className="text-center">
                             <div className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">100%</div>
-                            <div className="text-gray-400 text-sm">Engaged</div>
+                            <div className="text-muted text-sm">Engaged</div>
                         </div>
                     </div>
                 </motion.div>
